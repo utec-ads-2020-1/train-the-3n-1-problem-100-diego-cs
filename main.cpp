@@ -7,7 +7,7 @@ int main(int argc, char const *argv[]) {
 
     std::string line;  
     while(getline(std::cin, line))
-        output(line);
+        max_cycle(line);
 
     return EXIT_SUCCESS;
 }
