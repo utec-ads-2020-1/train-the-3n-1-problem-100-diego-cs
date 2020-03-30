@@ -1,7 +1,5 @@
 #include "maxcycle.hpp"
 
-#define SIZE 1000000
-
 /* compile -> g++ main.cpp -o exec*/
 /* run     -> ./exec < input */
 
