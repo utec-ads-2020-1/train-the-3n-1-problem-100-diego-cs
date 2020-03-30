@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <algorithm> // std::remove
+#include <vector>
+#include <sstream>
 
 int cycle(int n) {
     int count = 0;
@@ -19,25 +21,22 @@ int cycle(int n) {
     return count + 1;
 }
 
-void read() {
-    std::string line;
-    int i, j;
-    //char remainder[SIZE];
-    
-    while (getline(std::cin, line)) {
-        line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
-        //int ret = sscanf(line.c_str(), "%d%d%s", &i, &j, remainder);
-        bool isCorrect = !(i < 0 || (j > i && j < 10000));
+void output(const std::string& line) {
+    std::string number;
+    std::vector<std::string> numbers;
+    std::stringstream stream(line);
 
-        if (isCorrect) {
-            int max = cycle(i);
-            for (i = i + 1; i <= j; ++i) {
-                if (cycle(i) > max)
-                    max = cycle(i);
-            std::cout << max << std::endl;
-            }    
-            isCorrect = false;
-        }    
+    while (getline(stream, number, ' '))
+        numbers.push_back(number);
+    if (numbers.size() == 2) { // i and j
+        int i = std::stoi(numbers[0]);
+        int j = std::stoi(numbers[1]);
+        int max = cycle(i);
+        for (i = i + 1; i <= j; ++i) {
+            if (cycle(i) > max)
+                max = cycle(i);
+        }
+        std::cout << numbers[0] << " " << numbers[1] << " " << max << std::endl;
     }
 }
 
