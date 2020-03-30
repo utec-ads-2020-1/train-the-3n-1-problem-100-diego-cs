@@ -2,7 +2,6 @@
 #define MAXCYCLE_HPP
 
 #include <iostream>
-#include <algorithm> // std::remove
 #include <vector>
 #include <sstream>
 
@@ -31,12 +30,14 @@ void output(const std::string& line) {
     if (numbers.size() == 2) { // i and j
         int i = std::stoi(numbers[0]);
         int j = std::stoi(numbers[1]);
-        int max = cycle(i);
-        for (i = i + 1; i <= j; ++i) {
-            if (cycle(i) > max)
-                max = cycle(i);
-        }
-        std::cout << numbers[0] << " " << numbers[1] << " " << max << std::endl;
+        if (0 < i && i < j && j < 10000) {
+            int max = cycle(i);
+            for (i = i + 1; i <= j; ++i) {
+                if (cycle(i) > max)
+                    max = cycle(i);
+            }
+            std::cout << numbers[0] << " " << numbers[1] << " " << max << std::endl;
+        }      
     }
 }
 
