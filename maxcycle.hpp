@@ -12,7 +12,6 @@ std::vector<std::string> generate_range(std::string& line) {
     std::stringstream stream(line); // internal memory buffer
 
     while (getline(stream, number, ' '))
-        if (number != "")
             numbers.push_back(number);
 
     /* Erases the empty values from vector, std::remove_if returns an iterator to the element that follows the last element not removed  */
@@ -33,23 +32,13 @@ void max_cycle(std::string& line) {
     if (numbers.size() == 2) { // i and j only validation
         int i = std::stoi(numbers[0]);
         int j = std::stoi(numbers[1]);
-        if (i < j) {
-            int max = cycle(i);
-            for (i = i + 1; i <= j; ++i) {
-                if (cycle(i) > max)
-                    max = cycle(i);
-            }
-            std::cout << numbers[0] << " " << numbers[1] << " " << max << std::endl;
+        if (i > j) std::swap(i, j);  
+        int max = cycle(j);
+        for (i; i <= j; ++i) {
+            if (cycle(i) > max)
+                max = cycle(i);
         }
-        else if (j < i) {
-            int max = cycle(j);
-            for (j = j + 1; j <= i; ++j) {
-                if (cycle(j) > max)
-                    max = cycle(j);
-            }
-            std::cout << numbers[0] << " " << numbers[1] << " " << max << std::endl;
-        }
-        else std::cout << numbers[0] << " " << numbers[1] << " " << cycle(i) << std::endl;
+        std::cout << numbers[0] << " " << numbers[1] << " " << max << std::endl;
     }
     else if (numbers.size() == 0)
         std::cout << std::endl;
