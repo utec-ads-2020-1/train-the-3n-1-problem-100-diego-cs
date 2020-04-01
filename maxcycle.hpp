@@ -25,9 +25,7 @@ int cycle(int n) {
 }
 
 void max_cycle(std::string& line) {
-    std::vector<std::string> numbers = {};
-    for (const auto& number : generate_range(line))
-        numbers.push_back(std::move(number));
+    auto numbers = std::move(generate_range(line));
 
     if (numbers.size() == 2) { // i and j only validation
         int i = std::stoi(numbers[0]);
