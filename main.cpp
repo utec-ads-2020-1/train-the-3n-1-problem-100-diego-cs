@@ -1,5 +1,4 @@
 #include <iostream>
-#include <chrono>
 
 int cycle(int n) {
     if (n == 1) return 1;
